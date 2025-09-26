@@ -1,0 +1,16 @@
+*{
+    color: rgb(0, 0, 255); /*a comment */
+    margin: 10px;
+    font: 40 px Tahoma;
+    background-color: rgb(234, 177, 177);
+    text-align: center;
+
+}
+
+button{
+    background-color: rgb(255, 129, 226);
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
