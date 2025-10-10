@@ -1,19 +1,94 @@
 *{
     color: rgb(173, 59, 88); /*a comment */
     margin: 10px;
-    font: 40 px Tahoma;
-    background-color: rgb(234, 177, 177);
-    text-align: center;
+    font: 30 px Tahoma;
+   
+}
+
+header, section{
+    margin: 2em auto;
+    width:  min(100em, 100%);
+    background-color: lightblue;
+    padding: min(3em, 30%);
+    border-radius: 1em;
+}
+
+nav{
+    margin: 1em auto 1em auto;
+    width: min(1000px, 100%);
+    font-size: 2em;
+
+}
+
+nav v1 {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 2em;
+}
+
+nav p:first-child{
+    margin-right: auto;
+    font-size: 1em;
+}
+
+.intro_button{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(8, 196, 221);
+    padding: .75em 1em;
+    margin-top: 2em;
+    border-radius: .5em;
+    font-weight: 600;
+}
 
 
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5em;
+}
+
+header img{
+    max-width: 100%;
+    border-radius: 1em;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.text-container{
+    flex: 0 1 40em;
+}
+
+h1{
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+p{
+    margin-top: 0.5em;
+    
+}
+
+button subpage{
+    display: inline-block;
+}
+
+scatterplot {
+    background-color: bisque;
 }
 
 button{
     background-color: rgb(255, 181, 200);
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 20px;
+    border: 3px solid rgb(255, 255, 255);
+    
+    padding: .75em 1em;
+    margin-top: 2em;
+    border-radius: .5em;
+    font-weight: 600;
 }
 
 .box{
@@ -36,6 +111,8 @@ button{
     font: 40 px Arial;
 
 }
+
+
 
 
 .grid-container{

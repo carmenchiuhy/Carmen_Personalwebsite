@@ -49,7 +49,7 @@ one.style.textAlign = "center";
 //add event listener
 one.addEventListener("click", w);
 
-document.querySelector("#1").appendChild(one);
+//document.querySelector("#1").appendChild(one);
 
 function w() {
     alert("Welcome to my work section!");

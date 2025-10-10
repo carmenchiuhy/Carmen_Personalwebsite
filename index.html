@@ -3,24 +3,44 @@
     <link href="style.css" rel="stylesheet" 
     width="200" 
     height="400"/>
-    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
 <body>
 
     <h1>This is a title</h1>
 
+    <header>
+        <!-- navigation bar-->
+        <nav id="nav">
+            <v1>
+                <p>Chiu Hoi Ying</p>
+                <button class="subpage">press </button>
+                <button id="cv" class="subpage"> cv </button>
+                <button class="subpage"> My work </button>
 
-    <div id="main">
-        <!--this is a comment-->
-        This is my personal website.
-        <button class="subpage">press </button>
-        <button id="cv" class="subpage"> cv </button>
-        <button id="exhibition" class="subpage"> My work </button>
-        <p> My self-introduction is one sentence.</p>
-        <img src="me.png" />
-    </div>
+            </v1>
+        </nav>
 
+        <div class="flex-container">
+            <img src="me.png" />
+            <div class="text-container">
+                <h1> Welcome to my website! </h1>
+                <p> Creative Media student experienced in design, 3D animation, and digital illustration. Passionate about exploring diverse media and techniques to create innovative visuals. Proactive and adaptable, thriving in collaborative environments and delivering high-quality work through creativity and teamwork.</p>
+                <s class=" intro_button"  href="">Follow me on Instagram</s>
+
+            </div>
+        </div>
+    </header>
+
+    <section id="scatterplot">
+        This is my section
+    </section>
+    
+    <section id="roseplot">
+        This is my section
+    </section>
+    
     <div class = "box">
         <div id = "1">One</div>
         <div>Two</div>
@@ -36,9 +56,15 @@
         <div class="grid-item2">2 </div>
         <div class="grid-item3">3 </div>
     </div>
+    
 
     
+    
     <script src="code.js">  </script>
+
+    <script src=" src/scatterplot.js">  </script>
+    <script src=" src/roseplot.js">  </script>
+
 </body>
 
 </html>
