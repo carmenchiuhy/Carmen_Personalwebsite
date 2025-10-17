@@ -1,4 +1,6 @@
  // Data representing creative skills for an art portfolio
+
+(function(){
         const skillsData = [
             { skill: "UX/UI Design", value: 85, color: "#3498db" },
             { skill: "Graphic Design", value: 92, color: "#2ecc71" },
@@ -139,3 +141,6 @@
         legendItems.append("span")
             .attr("class", "skill-value")
             .text(d => d.value + "%");
+
+
+})();

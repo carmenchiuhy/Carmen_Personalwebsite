@@ -1,4 +1,6 @@
  // --- 1. MOCK DATA ---
+
+(function(){
         const artworkData = [
             { title: "Ocean's Breath", completionDate: "2020-03-15", hoursSpent: 45, type: "Painting" },
             { title: "City at Dusk", completionDate: "2020-07-22", hoursSpent: 60, type: "Painting" },
@@ -184,3 +186,5 @@
 
         // Redraw chart on window resize
         window.addEventListener('resize', drawChart);
+
+})();
