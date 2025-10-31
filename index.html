@@ -6,6 +6,11 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -38,30 +43,55 @@
         </div>
     </header>
 
-    <section id="scatterplot">
-    </section>
-
-    <section id="tree">
-    </section>
-    
-    
-    <section id="node">
-    </section>
-    
-    <section id="matrix">
-    </section>
+    <section id="scatterplot"></section>
+    <section id="tree"></section>
+    <section id="node"></section>
+    <section id="matrix"></section>
+    <section id="dotmap"></section>
     
 
+    <div class="title-container">
+        <h1>Real-Time Visitor Map</h1>
+        <p>Tracking visitors to Carmen's Personal Website worldwide</p>
+    </div>
+    
+    <section id="symbolmap">
+        <div class="tooltip"></div>
+        <div class="stats">
+            <div class="stats-title">Live Stats</div>
+            <div>Total Visitors: <span id="totalVisitors" class="stats-value">0</span></div>
+            <div>Active Countries: <span id="activeCountries" class="stats-value">0</span></div>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Visitor Count</div>
+            <div class="legend-item">
+                <div class="legend-circle" style="width: 10px; height: 10px;"></div>
+                <span>Few visitors (1-50)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="width: 20px; height: 20px;"></div>
+                <span>Medium (51-100)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="width: 30px; height: 30px;"></div>
+                <span>Many visitors (101+)</span>
+            </div>
+        </div>
+    </section>
+
+    
     
     
     <script src="code.js">  </script>
 
-    <script src=" src/scatterplot.js">  </script>
-    <script src=" src/roseplot.js">  </script>
-    <script src=" src/tree.js">  </script>
-
-    <script src=" src/node.js"></script>
+    <script src="src/scatterplot.js">  </script>
+    <script src="src/roseplot.js">  </script>
+    <script src="src/tree.js">  </script>
+    <script src="src/node.js"></script>
     <script src="src/matrix.js"></script>
+    <script src="src/dotmap.js"></script>
+    <script src="src/symbolmap.js"></script>
+
 
 </body>
 
@@ -88,4 +118,3 @@
         <div class="grid-item2">2 </div>
         <div class="grid-item3">3 </div>
     </div>
-      -->
