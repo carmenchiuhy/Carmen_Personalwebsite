@@ -4,11 +4,13 @@
     width="200" 
     height="400"/>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+    
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
 
 
     <meta charset="UTF-8">
@@ -43,7 +45,25 @@
         </div>
     </header>
 
-    <section id="scatterplot"></section>
+
+
+
+
+    <section class="chart-section">
+        <h1>Artist's Work Analysis</h1>
+        <div class="chart-container">
+            <!-- FILTER UI CONTAINER -->
+            <div class="filter-container">
+                <label for="type-filter">Filter by Type:</label>
+                <div id="filter-dropdown"></div>
+            </div>
+            
+            <!-- SCATTERPLOT VISUALIZATION -->
+            <div class="visualization-container">
+                <div id="scatterplot"></div>
+            </div>
+        </div>
+    </section>
     <section id="tree"></section>
     <section id="node"></section>
     <section id="matrix"></section>

@@ -1,6 +1,4 @@
- // --- 1. MOCK DATA ---
-
-(function(){
+ (function(){
         const artworkData = [
             { title: "Ocean's Breath", completionDate: "2020-03-15", hoursSpent: 45, type: "Painting" },
             { title: "City at Dusk", completionDate: "2020-07-22", hoursSpent: 60, type: "Painting" },
@@ -29,8 +27,27 @@
             d.completionDate = parseDate(d.completionDate);
         });
 
-        // --- 3. RESPONSIVE CHART FUNCTION ---
-        function drawChart() {
+        // --- NEW: STATE MANAGEMENT ---
+        // This variable will hold the current filter selection to maintain state on resize.
+        let currentFilter = "All";
+
+        // --- NEW: FILTER UI CREATION ---
+        const uniqueTypes = ["All", ...new Set(artworkData.map(d => d.type))];
+        
+        const filterDropdown = d3.select("#filter-dropdown")
+            .append("select")
+            .attr("id", "type-filter");
+
+        filterDropdown.selectAll("option")
+            .data(uniqueTypes)
+            .enter()
+            .append("option")
+            .attr("value", d => d)
+            .text(d => d === "All" ? "All Types" : d);
+
+        // --- 3. RESPONSIVE CHART FUNCTION (MODIFIED) ---
+        // The function now accepts a 'data' parameter to draw.
+        function drawChart(data) {
             // Clear previous SVG to allow for redrawing
             d3.select("#scatterplot").html("");
             // Remove any stray tooltips
@@ -40,30 +57,26 @@
             const margin = { top: 10, right: 200, bottom: 80, left: 70 };
             
             const container = d3.select("#scatterplot");
-            // Use getBoundingClientRect() to measure the container's width reliably.
             const containerRect = container.node().getBoundingClientRect();
             
-            // **CORRECTION**: Calculate height based on the container's width to ensure a consistent aspect ratio.
-            // This prevents the height from being 0 on an empty element.
             const svgWidth = containerRect.width;
-            const svgHeight = svgWidth * 0.35; // Aspect ratio (e.g., 0.6 means height is 60% of width)
+            // A taller aspect ratio to better fit the content
+            const svgHeight = Math.max(svgWidth * 0.5, 300); 
 
             const width = svgWidth - margin.left - margin.right;
             const height = svgHeight - margin.top - margin.bottom;
 
-            // Ensure height is not negative if the container is too small
-            if (height < 0) return;
+            if (height < 0 || width < 0) return;
 
-            // Create the SVG container
             const svg = container.append("svg")
                 .attr("width", svgWidth)
                 .attr("height", svgHeight);
 
-            // Create the main chart group, translated by the margins
             const chartGroup = svg.append("g")
                 .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
             // --- B. SCALES ---
+            // **IMPORTANT**: Scales are based on the full artworkData to prevent axes from changing during filtering.
             const xScale = d3.scaleTime()
                 .domain(d3.extent(artworkData, d => d.completionDate))
                 .range([0, width])
@@ -73,10 +86,10 @@
                 .domain([0, d3.max(artworkData, d => d.hoursSpent)])
                 .range([height, 0])
                 .nice();
-
-            const uniqueTypes = [...new Set(artworkData.map(d => d.type))];
+            
+            const allUniqueTypes = [...new Set(artworkData.map(d => d.type))];
             const colorScale = d3.scaleOrdinal()
-                .domain(uniqueTypes)
+                .domain(allUniqueTypes)
                 .range(d3.schemeCategory10);
 
             // --- C. AXES ---
@@ -93,7 +106,7 @@
             chartGroup.append("text")
                 .attr("class", "axis-label")
                 .attr("x", width / 2)
-                .attr("y", height + margin.bottom - 15) // Adjust position
+                .attr("y", height + margin.bottom - 15)
                 .attr("text-anchor", "middle")
                 .text("Completion Date");
                 
@@ -114,17 +127,26 @@
                 .attr("class", "tooltip");
 
             // --- E. DRAW CIRCLES ---
-            chartGroup.selectAll("circle")
-                .data(artworkData)
-                .enter()
+            // Circles are drawn using the filtered 'data' passed to the function.
+            // We use an update pattern to handle transitions smoothly.
+            const circles = chartGroup.selectAll("circle")
+                .data(data, d => d.title); // Use a key function for object constancy
+
+            // Exit: remove old circles
+            circles.exit()
+                .transition().duration(300)
+                .attr("r", 0)
+                .remove();
+
+            // Enter: add new circles
+            circles.enter()
                 .append("circle")
                 .attr("cx", d => xScale(d.completionDate))
                 .attr("cy", d => yScale(d.hoursSpent))
-                .attr("r", 7)
+                .attr("r", 0) // Start with radius 0 for entry animation
                 .attr("fill", d => colorScale(d.type))
                 .attr("stroke", "#fff")
                 .attr("stroke-width", 1.5)
-                .style("opacity", 0.8)
                 .style("cursor", "pointer")
                 .on("mouseover", function(event, d) {
                     d3.select(this)
@@ -151,15 +173,19 @@
                         .style("opacity", 0.8);
                     
                     tooltip.style("visibility", "hidden");
-                });
+                })
+                .transition().duration(500) // Entry transition
+                .attr("r", 7)
+                .style("opacity", 0.8);
 
             // --- F. LEGEND ---
+            // The legend is static and always shows all possible types.
             const legend = chartGroup.append("g")
                 .attr("class", "legend")
                 .attr("transform", `translate(${width + 20}, 0)`);
 
             legend.selectAll("rect")
-                .data(uniqueTypes)
+                .data(allUniqueTypes)
                 .enter()
                 .append("rect")
                 .attr("x", 0)
@@ -169,22 +195,46 @@
                 .attr("fill", d => colorScale(d));
 
             legend.selectAll("text")
-                .data(uniqueTypes)
+                .data(allUniqueTypes)
                 .enter()
                 .append("text")
                 .attr("x", 24)
                 .attr("y", (d, i) => i * 25 + 14)
                 .text(d => d)
-                .attr("fill", "#333")
-                .style("font-size", "14px");
+                .attr("fill", "#333");
         }
 
-        // --- 4. INITIAL DRAW & RESIZE LISTENER ---
+        // --- NEW: EVENT HANDLING ---
+        filterDropdown.on("change", function() {
+            // Get the selected value from the dropdown
+            const selectedType = d3.select(this).property("value");
+            currentFilter = selectedType; // Update the state variable
+
+            let filteredData;
+            if (selectedType === "All") {
+                filteredData = artworkData;
+            } else {
+                filteredData = artworkData.filter(d => d.type === selectedType);
+            }
+            
+            // Redraw the chart with the filtered data
+            drawChart(filteredData);
+        });
+
+        // --- 4. INITIAL DRAW & RESIZE LISTENER (MODIFIED) ---
         
-        // Initial call to draw the chart
-        drawChart();
+        // Initial call to draw the chart with all data
+        drawChart(artworkData);
 
-        // Redraw chart on window resize
-        window.addEventListener('resize', drawChart);
+        // Redraw chart on window resize, respecting the current filter
+        window.addEventListener('resize', () => {
+            let filteredData;
+            if (currentFilter === "All") {
+                filteredData = artworkData;
+            } else {
+                filteredData = artworkData.filter(d => d.type === currentFilter);
+            }
+            drawChart(filteredData);
+        });
 
-})();
+    })();
