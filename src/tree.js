@@ -1,6 +1,6 @@
 (function() {
     const flowData = {
-        "name": "Creative Skills Ecosystem",
+        "name": "Creative Skills",
         "children": [
             {
                 "name": "Digital Design",
@@ -9,7 +9,6 @@
                         "name": "UI/UX Design",
                         "children": [
                             {"name": "Figma"},
-                            {"name": "Adobe XD"},
                             {"name": "Prototyping"},
                             {"name": "User Research"}
                         ]
@@ -21,13 +20,6 @@
                             {"name": "Wireframing"},
                             {"name": "Design Systems"}
                         ]
-                    },
-                    {
-                        "name": "Interaction Design",
-                        "children": [
-                            {"name": "Microinteractions"},
-                            {"name": "Animation Principles"}
-                        ]
                     }
                 ]
             },
@@ -38,8 +30,7 @@
                         "name": "3D Modeling",
                         "children": [
                             {"name": "Maya"},
-                            {"name": "Blender"},
-                            {"name": "ZBrush"}
+                            {"name": "Blender"}
                         ]
                     },
                     {
@@ -54,8 +45,7 @@
                         "name": "Rendering",
                         "children": [
                             {"name": "Arnold"},
-                            {"name": "VRay"},
-                            {"name": "Real-time Rendering"}
+                            {"name": "Renderman"}
                         ]
                     }
                 ]
@@ -74,9 +64,7 @@
                     {
                         "name": "Digital Illustration",
                         "children": [
-                            {"name": "Procreate"},
-                            {"name": "Adobe Fresco"},
-                            {"name": "Vector Art"}
+                            {"name": "Procreate"}
                         ]
                     },
                     {
@@ -94,25 +82,14 @@
                     {
                         "name": "Photography",
                         "children": [
-                            {"name": "Adobe Lightroom"},
-                            {"name": "Photoshop"},
-                            {"name": "Portrait Photography"},
-                            {"name": "Event Coverage"}
+                            {"name": "Photoshop"}
                         ]
                     },
                     {
                         "name": "Video Production",
                         "children": [
-                            {"name": "Premiere Pro"},
-                            {"name": "After Effects"},
-                            {"name": "Color Grading"}
-                        ]
-                    },
-                    {
-                        "name": "Cinematography",
-                        "children": [
-                            {"name": "Lighting"},
-                            {"name": "Composition"}
+                            {"name": "Davinci Resolve"},
+                            {"name": "After Effects"}
                         ]
                     }
                 ]
@@ -125,22 +102,9 @@
                         "children": [
                             {"name": "HTML/CSS"},
                             {"name": "JavaScript"},
-                            {"name": "React"}
-                        ]
-                    },
-                    {
-                        "name": "Creative Coding",
-                        "children": [
                             {"name": "p5.js"},
                             {"name": "Processing"},
                             {"name": "Generative Art"}
-                        ]
-                    },
-                    {
-                        "name": "XR Development",
-                        "children": [
-                            {"name": "AR/VR Design"},
-                            {"name": "Unity Basics"}
                         ]
                     }
                 ]
@@ -195,6 +159,8 @@
 
     // Create hierarchy
     let root = d3.hierarchy(flowData, d => d.children);
+    
+    // Center the root node vertically
     root.x0 = height / 2;
     root.y0 = 0;
 
@@ -313,7 +279,6 @@
             .style("fill", "none")
             .style("stroke", d => colorScale(d.source.depth))
             .style("stroke-width", "2px")
-            .style("opacity", 0.7)
             .style("stroke-dasharray", "5,5");
 
         // UPDATE links
@@ -368,18 +333,10 @@
         }
 
         function mouseover(event, d) {
-            // Highlight connected nodes and links
-            svg.selectAll('.link')
-                .style('opacity', 0.1);
-                
-            svg.selectAll('.node')
-                .style('opacity', 0.3);
-                
-            // Highlight path to root
+            // Highlight connected nodes
             let current = d;
             while (current) {
                 d3.selectAll(`.node[id="${current.id}"]`)
-                    .style('opacity', 1)
                     .select('circle')
                     .transition()
                     .duration(200)
@@ -387,8 +344,7 @@
                     
                 if (current.parent) {
                     d3.selectAll(`.link[data-target="${current.id}"]`)
-                        .style('opacity', 0.8)
-                        .style('stroke-width', '3px');
+                        .style("stroke-width", '3px');
                 }
                 current = current.parent;
             }
@@ -396,24 +352,20 @@
             // Highlight direct children
             if (d.children) {
                 d.children.forEach(child => {
-                    d3.selectAll(`.node[id="${child.id}"]`)
-                        .style('opacity', 1);
+                    d3.selectAll(`.node[id="${child.id}"]`);
                         
                     d3.selectAll(`.link[data-target="${child.id}"]`)
-                        .style('opacity', 0.8)
-                        .style('stroke-width', '3px');
+                        .style("stroke-width", '3px');
                 });
             }
         }
 
         function mouseout(event, d) {
-            // Reset all opacities and sizes
+            // Reset all sizes
             svg.selectAll('.link')
-                .style('opacity', 0.7)
-                .style('stroke-width', '2px');
+                .style("stroke-width", '2px');
                 
             svg.selectAll('.node')
-                .style('opacity', 1)
                 .select('circle')
                 .transition()
                 .duration(200)
@@ -431,7 +383,7 @@
         .attr("height", height)
         .style("fill", "transparent");
 
-    // Add title
+    // Add title - centered
     svg.append("text")
         .attr("x", width / 2)
         .attr("y", -20)
@@ -443,14 +395,4 @@
 
     // Initial render
     update(root);
-
-    // Add zoom capability
-    const zoom = d3.zoom()
-        .scaleExtent([0.5, 2])
-        .on('zoom', (event) => {
-            svg.attr('transform', event.transform);
-        });
-
-    container.select("svg").call(zoom);
-
 })();

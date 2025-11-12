@@ -1,62 +1,30 @@
 html{
+
     scroll-behavior: smooth;
 }
 
 
 *{
-    color: #1a2a3a;
+    color: rgb(173, 59, 88); /*a comment */
     margin: 10px;
-    font: 30 px Epilogue;
+    font: 30 px Tahoma;
    
 }
 
 header, section{
     margin: 2em auto;
     width:  min(100em, 100%);
-    /* background-color: lightblue; */
+    background-color: lightblue;
     padding: min(3em, 30%);
     border-radius: 1em;
 }
 
-/* header, section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 100px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-    background-color: #ffffff;
-} */
-
-/* nav{
+nav{
     margin: 1em auto 1em auto;
     width: min(1000px, 100%);
     font-size: 2em;
-    /* margin-top: auto; */
 
-
-
-nav {
-    margin: 0 auto;
-    width: min(1000px, 100%);
-    font-size: 1.2em;
-    padding: 1em 0;
 }
-
-.nav-links .subpage:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 60%;
-    width: 1px;
-    background-color: #ccc;
-}
-
 
 nav v1 {
     display: flex;
@@ -81,6 +49,7 @@ nav p:first-child{
     font-weight: 600;
 }
 
+
 .flex-container{
     display: flex;
     justify-content: center;
@@ -101,64 +70,12 @@ header img{
 }
 
 h1{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 557px;
-    font-family: "Epilogue-SemiBold", Helvetica;
-    font-weight: 600;
-    color:#1a2a3a ;
-    font-size: 80px;
-    letter-spacing: 0;
-    line-height: 90px;
-    }
+    font-size: 2em;
+    margin-bottom: 1em;
+}
 
 p{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 557px;
-    font-family: "Epilogue-SemiBold", Helvetica;
-    font-weight: 600;
-    color: #1a2a3a;
-    font-size: 80px;
-    letter-spacing: 0;
-    line-height: 200px;
-    
-}
-
-b{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 557px;
-    margin-top: -1.00px;
-    font-family: "Epilogue-SemiBold", Helvetica;
-    font-weight: 600;
-    color:#1a2a3a ;
-    font-size: 80px;
-    letter-spacing: 0;
-    line-height: 90px;
-
-}
-
-a{
-    position: relative;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    justify-content: center;
-    margin-top: -1px;
-    width: 557px;
-    font-family: "Epilogue-SemiBold", Helvetica;
-    font-weight: 600;
-    color: #1a2a3a;
-    font-size: 15px;
-    letter-spacing: 0;
-    
+    margin-top: 0.5em;
     
 }
 
@@ -248,7 +165,7 @@ button{
 
 
 
-/* #tree {
+#tree {
     width: 100%;
     height: 800px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -287,7 +204,7 @@ button{
 }
 
 /* Hover effects */
-/* .node circle:hover {
+.node circle:hover {
     r: 10px !important;
     filter: brightness(1.2);
 }
@@ -296,7 +213,7 @@ button{
     stroke-width: 4px !important;
     opacity: 1 !important;
     stroke-dasharray: none !important;
-} */ */
+}
 
 
 
@@ -421,58 +338,7 @@ button{
         }
 
 
-#tree {
-    width: 100%;
-    height: 800px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 20px;
-    box-shadow: 0 2px 40px rgba(0,0,0,0.3);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.node circle {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.node text {
-    font-family: 'Figtree';
-    pointer-events: none;
-    
-}
-
-.link {
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.node--root circle {
-    r: 15px !important;
-    stroke-width: 3px !important;
-}
-
-.node--internal circle {
-    stroke-width: 2.5px !important;
-}
-
-.node--leaf circle {
-    stroke-width: 2px !important;
-}
-
-/* Hover effects */
-.node circle:hover {
-    r: 15px !important;
-    filter: brightness(1.2);
-}
-
-.link:hover {
-    stroke-width: 4px !important;
-    opacity: 1 !important;
-    stroke-dasharray: none !important;
-}
 
 
 
@@ -591,4 +457,3 @@ button{
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
  */
-
