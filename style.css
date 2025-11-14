@@ -7,37 +7,15 @@ html{
     color: #1a2a3a;
     margin: 10px;
     font: 30 px Epilogue;
-   
 }
 
 header, section{
     margin: 2em auto;
     width:  min(100em, 100%);
     /* background-color: lightblue; */
-    padding: min(3em, 30%);
-    border-radius: 1em;
+    padding: min(1em, 30%);
+    border-radius: 0.5em;
 }
-
-/* header, section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 100px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-    background-color: #ffffff;
-} */
-
-/* nav{
-    margin: 1em auto 1em auto;
-    width: min(1000px, 100%);
-    font-size: 2em;
-    /* margin-top: auto; */
-
-
 
 nav {
     margin: 0 auto;
@@ -59,11 +37,18 @@ nav {
 
 
 nav v1 {
+    position: absolute;
+    top: calc(50.00% - 14px);
+    right: 200px;
+    width: 267px;
+    height: 28px;
     display: flex;
     align-items: center;
-    list-style-type: none;
-    gap: 2em;
+    justify-content: flex-end;
+    gap: 50px;
 }
+
+
 
 nav p:first-child{
     margin-right: auto;
@@ -96,37 +81,50 @@ header img{
     object-position: bottom;
 }
 
-.text-container{
-    flex: 0 1 40em;
+.text-container {
+    flex: 0 1 70em;
 }
 
-h1{
+h1 {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 557px;
-    font-family: "Epilogue-SemiBold", Helvetica;
-    font-weight: 600;
-    color:#1a2a3a ;
-    font-size: 80px;
-    letter-spacing: 0;
-    line-height: 90px;
-    }
-
-p{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: unset;
     width: 557px;
     font-family: "Epilogue-SemiBold", Helvetica;
     font-weight: 600;
     color: #1a2a3a;
     font-size: 80px;
     letter-spacing: 0;
-    line-height: 200px;
-    
+    line-height: 90px;
+}
+
+nv1{
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    font-family: "Epilogue-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #1a2a3a;
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+p {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    font-family: "Epilogue-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #1a2a3a;
+    font-size: 80px;
+    letter-spacing: 0;
+    line-height: 20px;
 }
 
 b{
@@ -145,22 +143,24 @@ b{
 
 }
 
-a{
+a {
     position: relative;
     display: flex;
     align-items: center;
     text-align: left;
-    justify-content: center;
-    margin-top: -1px;
+    justify-content: unset;
     width: 557px;
     font-family: "Epilogue-SemiBold", Helvetica;
     font-weight: 600;
     color: #1a2a3a;
-    font-size: 15px;
+    font-size: 20px;
     letter-spacing: 0;
-    
-    
 }
+
+a2 {
+
+}
+
 
 button subpage{
     display: inline-block;
@@ -296,7 +296,7 @@ button{
     stroke-width: 4px !important;
     opacity: 1 !important;
     stroke-dasharray: none !important;
-} */ */
+} */ 
 
 
 
