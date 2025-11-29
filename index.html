@@ -3,137 +3,177 @@
     <link href="style.css" rel="stylesheet" 
     width="200" 
     height="400"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href="stylenode.css" rel="stylesheet"
+    height: 1000px;/>
+    <!-- <link href="styletree.css" rel="stylesheet"/> -->
+
 </head>
+
 
 <body>
     <header>
-        <!-- navigation bar-->
+        <!-- Navigation Bar -->
         <nav id="nav">
-            <nv1>Portfolio</nv1>
-            <v1>
-            
-        
-                <a class="subpage" href="#scatterplot"> my experience </a>
-                <a class="subpage" href="subpage/mywork.html"> mywork </a>
-                <!-- <button class="subpage"> My work </button> -->
-            
-            </v1>
+            <div class="logo">
+                <a href="#top">Portfolio</a>
+            </div>
+            <div class="nav-links">
+                <a class="subpage" href="#node">My Experience</a>
+                <a class="subpage" href="subpage/myskills.html">My Skills</a>
+            </div>
         </nav>
 
-        <div class="flex-container">
-            <!-- <img src="me.png" /> -->
+        <div id="top" class="flex-container">
             <div class="text-container">
-                <a> Chiu Hoi Ying </a>
-                <h1> Portfolio </h1>
-                <a> Creative Media student experienced in design, 3D animation, and digital illustration. Passionate about exploring diverse media and techniques to create innovative visuals.</a>
-                <!-- <a class=" intro_button"  href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit"> Follow me on Iinkedin</a> -->
-               
+                <h2>Chiu Hoi Ying </h2>
+                <!-- <h1>Portfolio</h1> -->
+                <h6>Designer</h6>
+                
+                <p>Creative Media student experienced in design, 3D animation, and digital illustration. </p>
             </div>
         </div>
+
+
+    
+
+        <section class="grid grid-1">
+            <figure>
+                <img src="images/flower.png" alt="" class="autoRotate">
+                <img src="images/flower.png" alt="" class="autoRotate">
+                <img src="images/flower.png" alt="" class="autoRotate">
+                <!-- <img src="images/flower.png" alt="" class="autoRotate"> -->
+            </figure>
+            
+        </section>
+
     </header>
 
 
 
+    <section id="intro" class="intro-section">
+    <div class="intro-rectangle">
+        <h1 class="intro-title">Welcome</h1>
+        <p class="intro-text">
+       I am a visual storyteller and digital artist passionate about bringing ideas to life through animation, illustration, and thoughtful design. My skills span from 3D modeling in Houdini to UI/UX design in Figma, driven by a curiosity for diverse media and a collaborative spirit. I thrive on creating innovative projects that engage and inspire.
+        </p>
+    </div>
+</section>
 
 
-    <section class="chart-section">
-        <a>Artist's Work Analysis</a>
-        <div class="chart-container">
-            <!-- FILTER UI CONTAINER -->
-            <div class="filter-container">
-                <label for="type-filter">Filter by Type:</label>
-                <div id="filter-dropdown"></div>
+
+    <!-- <section id="tree"></section> -->
+
+     <div style="height: 0vh; display: flex; align-items: center; justify-content: center;">
+        <!-- <h2>Scroll down to see the skills visualization</h2> -->
+    </div>
+
+    <section id="scatterplot">
+        <div class="scatterplot-header">
+            <h4 class="scatterplot-title">Design & Creative Skills Matrix</h4>
+            <!-- <p class="scatterplot-subtitle">
+                Visualizing my creative and technical skills based on proficiency and experience. 
+                Hover over points for details and use filters to explore by category.
+            </p> -->
+        </div>
+        <div class="scatterplot-container">
+            <div id="chart"></div>
+            <div class="controls">
+                <button class="control-btn active" data-category="all">All Skills</button>
+                <button class="control-btn" data-category="Creative Technology">Creative Tech</button>
+                <button class="control-btn" data-category="design">Visual Design</button>
+                <button class="control-btn" data-category="Animation">Animation</button>
+                <button class="control-btn" data-category="tools">Design Tools</button>
             </div>
-            
-            <!-- SCATTERPLOT VISUALIZATION -->
-            <div class="visualization-container">
-                <div id="scatterplot"></div>
-            </div>
+            <!-- Removed animation controls -->
         </div>
     </section>
-    <section id="tree"></section>
+
+
+
+
     <section id="node">
-        <h1>Work experiences</h1>
+        <h4>Work experiences</h4>
+        
     </section>
-    <section id="matrix"></section>
-    <section id="dotmap"></section>
-    
 
-    <div class="title-container">
-        <h1>Real-Time Visitor Map</h1>
-        <p>Tracking visitors to Carmen's Personal Website worldwide</p>
-    </div> 
-    
-    <section id="symbolmap">
-        <div class="tooltip"></div>
-        <div class="stats">
-            <div class="stats-title">Live Stats</div>
-            <div>Total Visitors: <span id="totalVisitors" class="stats-value">0</span></div>
-            <div>Active Countries: <span id="activeCountries" class="stats-value">0</span></div>
+
+    <section class="project">
+        <div class="section-title">
+            <h4>Recent Works</h4>
         </div>
-        <div class="legend">
-            <div class="legend-title">Visitor Count</div>
-            <div class="legend-item">
-                <div class="legend-circle" style="width: 10px; height: 10px;"></div>
-                <span>Few visitors (1-50)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-circle" style="width: 20px; height: 20px;"></div>
-                <span>Medium (51-100)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-circle" style="width: 30px; height: 30px;"></div>
-                <span>Many visitors (101+)</span>
-            </div>
+        <div class="projects-container" id="projects-container">
+            <!-- Projects will be dynamically added here with D3.js -->
         </div>
     </section>
 
-    
-    
-    
-    <script src="code.js">  </script>
 
-    <script src="src/scatterplot.js">  </script>
-    <script src="src/roseplot.js">  </script>
+
+    
+   
+
+<!-- slider -->
+    <div class="slider" reverse="true" style="
+            --width: 300px;
+            --height: 200px;
+            --quantity: 13;
+        ">
+            <div class="list">
+                <div class="item" style="--position: 1"><img src="images/slider1_1.jpg" alt=""></div>
+                <div class="item" style="--position: 2"><img src="images/slider1_2.jpg" alt=""></div>
+                <div class="item" style="--position: 3"><img src="images/slider1_3.jpg" alt=""></div>
+                <div class="item" style="--position: 4"><img src="images/slider1_4.jpg" alt=""></div>
+                <div class="item" style="--position: 5"><img src="images/slider1_5.jpg" alt=""></div>
+                <div class="item" style="--position: 6"><img src="images/slider1_6.jpg" alt=""></div>
+                <div class="item" style="--position: 7"><img src="images/slider1_7.jpg" alt=""></div>
+                <div class="item" style="--position: 8"><img src="images/slider1_8.jpg" alt=""></div>
+                <div class="item" style="--position: 9"><img src="images/slider1_9.jpg" alt=""></div>
+                <div class="item" style="--position: 10"><img src="images/slider1_10.jpg" alt=""></div>
+                <div class="item" style="--position: 11"><img src="images/slider1_11.jpg" alt=""></div>
+                <div class="item" style="--position: 12"><img src="images/slider1_12.jpg" alt=""></div>
+                <div class="item" style="--position: 13"><img src="images/slider1_13.jpg" alt=""></div>
+                
+            </div>
+        </div>
+
+    
+
+ <section class="contact-section">
+        <div class="contact-container">
+            <h5 class="contact-title">Contact</h5>
+            <div class="contact-details-simple">
+                <div class="contact-detail-item">
+                    <strong>Email:</strong>
+                    eechiuhy@gmail.com
+                </div>
+                <div class="contact-detail-item">
+                    <strong>Phone:</strong>
+                    98855317
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+
+    <script src="src/intro.js"></script>
     <script src="src/tree.js">  </script>
     <script src="src/node.js"></script>
-    <script src="src/matrix.js"></script>
-    <script src="src/dotmap.js"></script>
-    <script src="src/symbolmap.js"></script>
-
-
-</body>
-
-</html>
-
-    
+    <script src="src/project.js"></script>    
+    <script src="src/scatterplot.js"></script>
     
 
-
-
-
- <!-- <div class = "box">
-        <div id = "1">One</div>
-        <div>Two</div>
-        <div>Three
-            <br> first line
-            <br> second line
-            
-        </div>
-    </div>
-    
-    <div class="grid-container">
-        <div id= "mywork" class="grid-item1"> 1  </div>
-        <div class="grid-item2">2 </div>
-        <div class="grid-item3">3 </div>
-    </div>
+</body>  

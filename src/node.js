@@ -82,7 +82,7 @@ const linksData = [
 
 const container = d3.select("#node");
 const width = parseInt(container.style("width")) || 800;
-const height = parseInt(container.style("height")) || 600;
+const height = parseInt(container.style("height")) || 800;
 
 // Create SVG element
 const svg = container.append("svg")
@@ -92,19 +92,22 @@ const svg = container.append("svg")
 
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-// Create tooltip
+// Create tooltip with larger dimensions
 const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0)
     .style("position", "absolute")
     .style("background", "white")
     .style("border", "1px solid #ccc")
-    .style("border-radius", "4px")
-    .style("padding", "8px")
-    .style("font-size", "12px")
+    .style("border-radius", "6px")
+    .style("padding", "12px")
+    .style("font-size", "13px")
     .style("pointer-events", "none")
-    .style("box-shadow", "0 2px 10px rgba(0,0,0,0.1)")
-    .style("max-width", "300px");
+    .style("box-shadow", "0 4px 15px rgba(0,0,0,0.15)")
+    .style("max-width", "400px")
+    .style("max-height", "500px")
+    .style("overflow-y", "auto")
+    .style("z-index", "1000");
 
 // Convert links to use node objects but keep all properties
 const linksForViz = linksData.map(link => {
@@ -120,14 +123,14 @@ const linksForViz = linksData.map(link => {
     };
 });
 
-// Force simulation
+// Force simulation with optimized stability
 const simulation = d3.forceSimulation(nodesData)
-    .force("link", d3.forceLink(linksForViz).id(d => d.id).distance(150))
-    .force("charge", d3.forceManyBody().strength(-500))
+    .force("link", d3.forceLink(linksForViz).id(d => d.id).distance(200))
+    .force("charge", d3.forceManyBody().strength(-400)) // Reduced repulsion for stability
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collide", d3.forceCollide().radius(d => (d.type === 'company' ? 80 : 50)))
-    .force("x", d3.forceX(width / 2).strength(0.05))
-    .force("y", d3.forceY(height / 2).strength(0.05));
+    .force("collide", d3.forceCollide().radius(d => (d.type === 'company' ? 90 : 60)).strength(0.8))
+    .force("x", d3.forceX(width / 2).strength(0.08)) // Balanced center force
+    .force("y", d3.forceY(height / 2).strength(0.08)); // Balanced center force
 
 // Create groups
 const linkGroup = svg.append("g").attr("class", "links");
@@ -182,34 +185,41 @@ node.on("mouseover", function(event, d) {
     // Show tooltip immediately on hover
     tooltip.transition()
         .duration(100)
-        .style("opacity", 0.9);
+        .style("opacity", 0.95);
     
     if (d.type === 'company') {
         // SIMPLE FILTERING - Use the original linksData array
         const companyLinks = linksData.filter(link => link.source === d.id);
         
-        let tooltipContent = `<strong>${d.id}</strong><br/><br/>`;
+        let tooltipContent = `<div style="min-height: 200px;"><strong style="font-size: 14px;">${d.id}</strong><br/><br/>`;
         
         if (companyLinks.length > 0) {
-            tooltipContent += `<strong>Work Details:</strong><br/><br/>`;
+            tooltipContent += `<strong style="font-size: 13px;">Work Details:</strong><br/><br/>`;
             companyLinks.forEach((link, index) => {
-                tooltipContent += `<div style="margin-bottom: 8px;">`;
-                tooltipContent += `<strong>${link.target}:</strong><br/>`;
-                tooltipContent += `${link.details}`;
+                tooltipContent += `<div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: ${index < companyLinks.length - 1 ? '1px solid #eee' : 'none'};">`;
+                tooltipContent += `<strong style="color: #2c3e50;">${link.target}:</strong><br/>`;
+                tooltipContent += `<span style="color: #555; line-height: 1.4;">${link.details}</span>`;
                 tooltipContent += `</div>`;
             });
         } else {
             tooltipContent += "No work details available";
         }
         
+        tooltipContent += `</div>`;
         tooltip.html(tooltipContent);
     } else {
         // For field nodes
-        tooltip.html(`<strong>${d.id}</strong><br/>Field: ${d.type}`);
+        tooltip.html(`<div style="min-height: 80px; display: flex; align-items: center; justify-content: center;"><strong style="font-size: 14px;">${d.id}</strong><br/>Field: ${d.type}</div>`);
     }
     
-    tooltip.style("left", (event.pageX + 10) + "px")
-           .style("top", (event.pageY - 28) + "px");
+    // Position tooltip with better placement logic
+    const tooltipWidth = 400;
+    const tooltipHeight = 300;
+    const x = event.pageX + 15;
+    const y = event.pageY - tooltipHeight / 2;
+    
+    tooltip.style("left", (x + tooltipWidth > window.innerWidth ? event.pageX - tooltipWidth - 15 : x) + "px")
+           .style("top", (y < 0 ? event.pageY + 15 : y) + "px");
 
     // Highlight connected nodes and links - use linksForViz for visualization
     const connectedNodeIds = new Set();
@@ -234,10 +244,10 @@ node.on("mouseover", function(event, d) {
     // Update node styles
     node.select("circle")
         .style("fill", n => {
-            if (n.id === d.id) return d.type === 'company' ? '#ff6b6b' : color(n.group);
+            if (n.id === d.id) return d.type === 'company' ? "#ff6b6b" : color(n.group);
             return connectedNodeIds.has(n.id) ? 
-                (n.type === 'company' ? '#ff6b6b' : color(n.group)) : 
-                (n.type === 'company' ? '#ddd' : color(n.group));
+                (n.type === 'company' ? "#ff6b6b" : color(n.group)) : 
+                (n.type === 'company' ? "#ddd" : color(n.group));
         })
         .style("opacity", n => connectedNodeIds.has(n.id) ? 1 : 0.3);
 
@@ -245,8 +255,14 @@ node.on("mouseover", function(event, d) {
         .style("opacity", n => connectedNodeIds.has(n.id) ? 1 : 0.3);
 })
 .on("mousemove", function(event, d) {
-    tooltip.style("left", (event.pageX + 10) + "px")
-           .style("top", (event.pageY - 28) + "px");
+    // Keep tooltip position updated during mouse movement
+    const tooltipWidth = 400;
+    const tooltipHeight = 300;
+    const x = event.pageX + 15;
+    const y = event.pageY - tooltipHeight / 2;
+    
+    tooltip.style("left", (x + tooltipWidth > window.innerWidth ? event.pageX - tooltipWidth - 15 : x) + "px")
+           .style("top", (y < 0 ? event.pageY + 15 : y) + "px");
 })
 .on("mouseout", function(event, d) {
     // Reset all styles
@@ -259,7 +275,7 @@ node.on("mouseover", function(event, d) {
         .style("opacity", 0.7);
 
     node.select("circle")
-        .style("fill", n => n.type === 'company' ? '#ddd' : color(n.group))
+        .style("fill", n => n.type === 'company' ? "#ddd" : color(n.group))
         .style("opacity", 1);
 
     node.select("text")
@@ -286,30 +302,19 @@ node.on("mouseover", function(event, d) {
         .attr("stroke", d.fx ? "#ff6b6b" : "#fff");
 });
 
-// // Add zoom behavior
-// const zoom = d3.zoom()
-//     .scaleExtent([0.1, 4])
-//     .on("zoom", function(event) {
-//         linkGroup.attr("transform", event.transform);
-//         nodeGroup.attr("transform", event.transform);
-//     });
-
-// svg.call(zoom);
-
-// // Double click to reset zoom and pan
-// svg.on("dblclick", function() {
-//     svg.transition()
-//         .duration(750)
-//         .call(zoom.transform, d3.zoomIdentity);
-// });
-
-// Tick function
+// Enhanced tick function with strict boundaries and velocity damping
 simulation.on("tick", () => {
-    const padding = 60;
+    const padding = 80;
     
     nodesData.forEach(d => {
-        d.x = Math.max(padding, Math.min(width - padding, d.x));
-        d.y = Math.max(padding, Math.min(height - padding, d.y));
+        // Strict boundary constraints with buffer
+        const nodeRadius = d.type === 'company' ? 40 : 30;
+        d.x = Math.max(nodeRadius + padding, Math.min(width - nodeRadius - padding, d.x));
+        d.y = Math.max(nodeRadius + padding, Math.min(height - nodeRadius - padding, d.y));
+        
+        // Dampen velocity for stability (reduces bouncing)
+        if (d.vx) d.vx *= 0.8;
+        if (d.vy) d.vy *= 0.8;
     });
 
     link
@@ -326,21 +331,30 @@ simulation.on("tick", () => {
         .attr("transform", d => `translate(${d.x}, ${d.y})`);
 });
 
-// Drag functions
+// Configure simulation for better stability
+simulation.alphaDecay(0.05); // Slower decay for smoother settling
+simulation.velocityDecay(0.4); // More velocity decay for less bouncing
+
+// Enhanced drag functions with boundary checking
 function drag(simulation) {
     function dragstarted(event, d) {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
+        if (!event.active) simulation.alphaTarget(0.1).restart(); // Lower alpha target for stability
         d.fx = d.x;
         d.fy = d.y;
     }
 
     function dragged(event, d) {
-        d.fx = event.x;
-        d.fy = event.y;
+        const nodeRadius = d.type === 'company' ? 40 : 30;
+        const padding = 80;
+        
+        // Constrain dragging within boundaries
+        d.fx = Math.max(nodeRadius + padding, Math.min(width - nodeRadius - padding, event.x));
+        d.fy = Math.max(nodeRadius + padding, Math.min(height - nodeRadius - padding, event.y));
     }
 
     function dragended(event, d) {
         if (!event.active) simulation.alphaTarget(0);
+        // Release node after dragging for natural movement
         d.fx = null;
         d.fy = null;
     }
@@ -375,5 +389,11 @@ function wrap(text, width) {
         }
     });
 }
+
+// Add stabilization timeout - let the simulation run for a bit then slow it down
+setTimeout(() => {
+    simulation.alphaDecay(0.02); // Even slower decay after initial layout
+    simulation.velocityDecay(0.6); // More damping after initial layout
+}, 2000);
 
 })();

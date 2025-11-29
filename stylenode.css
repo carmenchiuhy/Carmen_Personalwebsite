@@ -1,0 +1,64 @@
+/* node */
+* {
+    /* color: #1a2a3a; */
+    margin: 0; 
+    padding: 0; 
+    font: 'Epilogue', sans-serif;
+    /* text-transform: uppercase; */
+}
+
+header {
+    position: relative; 
+}
+
+
+#node {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative; /* Add this */
+    overflow: hidden; /* Add this to prevent any overflow */
+}
+
+.node-graph-svg {
+    display: block; /* Add this to remove extra space */
+}
+
+        /* Style for the links (lines) */
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+
+        /* Style for the text on the links */
+        .link-label {
+            font-size: 10px;
+            fill: #555;
+            text-anchor: middle;
+            pointer-events: none; /* Allows dragging through the text */
+        }
+        
+        /* Style for the nodes (circles) */
+        .node circle {
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+
+        /* Style for the text on the nodes */
+        .node-label {
+            font-size: 20px;
+            /* font-weight: bold; */
+            fill: #222;
+            /* text-anchor: middle; */
+            pointer-events: none; /* Allows dragging through the text */
+        }
+
+        /* Specific style for company node labels for better readability */
+        .node-label tspan {
+            text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+        }
+

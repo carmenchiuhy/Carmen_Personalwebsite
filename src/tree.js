@@ -1,110 +1,116 @@
-(function() {
-    const flowData = {
-        "name": "Creative Skills",
-        "children": [
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Skill data structured for sunburst
+    const skillData = {
+        name: "All Skills",
+        color: "#3498db",
+        description: "My complete creative skill set across multiple disciplines",
+        children: [
             {
-                "name": "Digital Design",
-                "children": [
-                    {
-                        "name": "UI/UX Design",
-                        "children": [
-                            {"name": "Figma"},
-                            {"name": "Prototyping"},
-                            {"name": "User Research"}
+                name: "Web Design",
+                color: "#009c24ff",
+                description: "Creating visually appealing and functional web interfaces",
+                children: [
+                    { 
+                        name: "Figma", 
+                        color: "#37d45bff",
+                        description: "UI/UX design and prototyping tool",
+                        value: 20,
+                        children: [
+                            { name: "Prototyping", value: 10, color: "#a0d4acff", description: "Creating interactive prototypes" },
+                            { name: "Design Systems", value: 10, color: "#a0d4acff", description: "Building consistent design frameworks" }
                         ]
                     },
-                    {
-                        "name": "Web Design",
-                        "children": [
-                            {"name": "Responsive Design"},
-                            {"name": "Wireframing"},
-                            {"name": "Design Systems"}
+                    { 
+                        name: "HTML/CSS/JS", 
+                        color: "#7bea95ff",
+                        description: "Front-end web development",
+                        value: 20,
+                        children: [
+                            { name: "Responsive Layouts", value: 20, color: "#a0d4acff", description: "Creating adaptable designs for all devices" }
                         ]
                     }
                 ]
             },
             {
-                "name": "3D & Animation",
-                "children": [
-                    {
-                        "name": "3D Modeling",
-                        "children": [
-                            {"name": "Maya"},
-                            {"name": "Blender"}
+                name: "UX/UI",
+                color: "#ff8000ff",
+                description: "Designing user-centered interfaces and experiences",
+                children: [
+                    { name: "User Research", value: 15, color: "#ff9a41ff", description: "Understanding user needs and behaviors" },
+                    { name: "Journey Mapping", value: 15, color: "#ff9a41ff", description: "Visualizing user interactions with products" },
+                    // { name: "Wireframing", value: 15, color: "ff9a41ff", description: "Creating structural layouts for interfaces" },
+                    { name: "Persona Creation", value: 15, color: "#ff9a41ff", description: "Developing user archetypes for design focus" }
+                ]
+            },
+            {
+                name: "Graphic Design",
+                color: "#463aebff",
+                description: "Developing visual concepts and communication materials",
+                children: [
+                    { 
+                        name: "Procreate", 
+                        color: "#736cd9ff",
+                        description: "Digital illustration on iPad",
+                        value: 20,
+                        children: [
+                            { name: "Digital Painting", value: 10, color: "#a8a2ffff", description: "Creating artwork with digital tools" },
+                            { name: "Illustration", value: 10, color: "#a8a2ffff", description: "Producing custom illustrations" }
                         ]
                     },
-                    {
-                        "name": "Animation",
-                        "children": [
-                            {"name": "Character Animation"},
-                            {"name": "Motion Graphics"},
-                            {"name": "Rigging"}
+                    { 
+                        name: "Adobe Illustrator", 
+                        color: "#4d46afff",
+                        description: "Vector graphics and logo design",
+                        value: 20,
+                        children: [
+                            { name: "Vector Graphics", value: 10, color: "#a29fc8ff", description: "Creating scalable graphic elements" },
+                            { name: "Logo Design", value: 10, color: "#a29fc8ff", description: "Designing brand identities" }
                         ]
                     },
-                    {
-                        "name": "Rendering",
-                        "children": [
-                            {"name": "Arnold"},
-                            {"name": "Renderman"}
+                    { 
+                        name: "Adobe Photoshop", 
+                        color: "#3440c4ff",
+                        description: "Image editing and manipulation",
+                        value: 20,
+                        children: [
+                            { name: "Photo Manipulation", value: 20, color: "#4d58ceff", description: "Editing and enhancing photographs" }
                         ]
                     }
                 ]
             },
             {
-                "name": "Visual Design",
-                "children": [
-                    {
-                        "name": "Graphic Design",
-                        "children": [
-                            {"name": "Adobe Illustrator"},
-                            {"name": "Brand Identity"},
-                            {"name": "Typography"}
+                name: "3D & Animation",
+                color: "#c13a79ff",
+                description: "Creating three-dimensional models and animations",
+                children: [
+                    { 
+                        name: "Autodesk Maya", 
+                        color: "#ff479dff",
+                        description: "3D modeling and animation software",
+                        value: 20,
+                        children: [
+                            { name: "3D Modeling", value: 10, color: "#ff74b5ff", description: "Creating three-dimensional objects" },
+                            { name: "Character Rigging", value: 10, color: "#ff74b5ff", description: "Preparing models for animation" }
                         ]
                     },
-                    {
-                        "name": "Digital Illustration",
-                        "children": [
-                            {"name": "Procreate"}
+                    { 
+                        name: "Blender", 
+                        color: "#af507dff",
+                        description: "Open-source 3D creation suite",
+                        value: 20,
+                        children: [
+                            { name: "Sculpting", value: 10, color: "#b26b8cff", description: "Digital clay modeling" },
+                            { name: "Renderman Rendering", value: 10, color: "#b26b8cff", description: "Real-time rendering engine" }
                         ]
                     },
-                    {
-                        "name": "Print Design",
-                        "children": [
-                            {"name": "Layout Design"},
-                            {"name": "Pre-press"}
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "Photography & Video",
-                "children": [
-                    {
-                        "name": "Photography",
-                        "children": [
-                            {"name": "Photoshop"}
-                        ]
-                    },
-                    {
-                        "name": "Video Production",
-                        "children": [
-                            {"name": "Davinci Resolve"},
-                            {"name": "After Effects"}
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "Creative Technology",
-                "children": [
-                    {
-                        "name": "Frontend Development",
-                        "children": [
-                            {"name": "HTML/CSS"},
-                            {"name": "JavaScript"},
-                            {"name": "p5.js"},
-                            {"name": "Processing"},
-                            {"name": "Generative Art"}
+                    { 
+                        name: "After Effects", 
+                        color: "#6e1d43ff",
+                        description: "Motion graphics and visual effects",
+                        value: 20,
+                        children: [
+                            { name: "Motion Graphics", value: 20, color: "#7c4b62ff", description: "Creating animated graphic design" }
                         ]
                     }
                 ]
@@ -112,287 +118,279 @@
         ]
     };
 
-    // Setup dimensions
-    const margin = { top: 40, right: 120, bottom: 40, left: 120 };
-    const container = d3.select("#tree");
-    const containerWidth = container.node().getBoundingClientRect().width;
-    const containerHeight = 800;
-
-    // Calculate internal dimensions
-    const width = Math.max(1000, containerWidth - margin.left - margin.right);
-    const height = containerHeight - margin.top - margin.bottom;
-
-    // Append SVG
-    const svg = container.append("svg")
-        .attr("width", width + margin.right + margin.left)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    // Add gradient definitions
-    const defs = svg.append("defs");
-    
-    const gradient = defs.append("linearGradient")
-        .attr("id", "link-gradient")
-        .attr("x1", "0%")
-        .attr("y1", "0%")
-        .attr("x2", "100%")
-        .attr("y2", "0%");
-    
-    gradient.append("stop")
-        .attr("offset", "0%")
-        .attr("stop-color", "#4facfe");
-    
-    gradient.append("stop")
-        .attr("offset", "100%")
-        .attr("stop-color", "#00f2fe");
-
-    // Color scale based on depth
-    const colorScale = d3.scaleSequential(d3.interpolatePlasma)
-        .domain([0, 4]);
-
-    let i = 0;
-    const duration = 750;
-
-    // Define the tree layout
-    const treemap = d3.tree().size([height, width]);
-
-    // Create hierarchy
-    let root = d3.hierarchy(flowData, d => d.children);
-    
-    // Center the root node vertically
-    root.x0 = height / 2;
-    root.y0 = 0;
-
-    // Update function
-    function update(source) {
-        const treeData = treemap(root);
-        const nodeDepth = 160;
+    // Function to initialize the visualization
+    function initializeVisualization() {
+        // Clear any existing SVG
+        d3.select("#tree").select("svg").remove();
         
-        treeData.descendants().forEach(d => { 
-            d.y = d.depth * nodeDepth; 
-        });
+        // Get the tree container and use larger dimensions
+        const treeContainer = document.getElementById('tree');
+        const containerWidth = treeContainer.clientWidth || 800;
+        const containerHeight = treeContainer.clientHeight || 600;
+        
+        console.log("Container dimensions:", containerWidth, containerHeight);
+        
+        // Set up dimensions - using larger values for bigger diagram
+        const width = containerWidth;
+        const height = containerHeight;
+        const radius = Math.min(width, height) / 2 - 40; // Increased padding for larger diagram
 
-        // ****************** Nodes section ***************************
-        const node = svg.selectAll('g.node')
-            .data(treeData.descendants(), d => d.id || (d.id = ++i));
+        // Create SVG inside the tree section with larger dimensions
+        const svg = d3.select("#tree")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("border-radius", "8px")
+            .append("g")
+            .attr("transform", `translate(${width/2},${height/2})`);
 
-        // Enter new nodes
-        const nodeEnter = node.enter().append('g')
-            .attr('class', d => `node node--level-${d.depth} ${d.children ? 'node--internal' : 'node--leaf'} ${d.depth === 0 ? 'node--root' : ''}`)
-            .attr("transform", d => `translate(${source.y0},${source.x0})`)
-            .on('click', click)
-            .on('mouseover', mouseover)
-            .on('mouseout', mouseout);
+        // Create tooltip
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0)
+            .style("position", "absolute")
+            .style("background", "rgba(0,0,0,0.8)")
+            .style("color", "white")
+            .style("padding", "8px")
+            .style("border-radius", "4px")
+            .style("font-size", "12px")
+            .style("pointer-events", "none");
 
-        // Add glow filter for nodes
-        const filter = defs.append("filter")
-            .attr("id", "glow")
-            .attr("x", "-50%")
-            .attr("y", "-50%")
-            .attr("width", "200%")
-            .attr("height", "200%");
-            
-        filter.append("feGaussianBlur")
-            .attr("in", "SourceGraphic")
-            .attr("stdDeviation", "3")
-            .attr("result", "blur");
-            
-        filter.append("feMerge")
-            .selectAll("feMergeNode")
-            .data(["blur", "SourceGraphic"])
-            .enter().append("feMergeNode")
-            .attr("in", d => d);
+        // Create hierarchy and calculate values
+        const root = d3.hierarchy(skillData)
+            .sum(d => d.value ? d.value : 0)
+            .sort((a, b) => b.value - a.value);
 
-        // Add circles with gradients
-        nodeEnter.each(function(d) {
-            const nodeGradient = defs.append("linearGradient")
-                .attr("id", `node-gradient-${d.id}`)
-                .attr("x1", "0%")
-                .attr("y1", "0%")
-                .attr("x2", "100%")
-                .attr("y2", "100%");
+        // Create partition layout
+        const partition = d3.partition()
+            .size([2 * Math.PI, radius]);
+
+        // Apply partition layout
+        partition(root);
+
+        // Create arc generator
+        const arc = d3.arc()
+            .startAngle(d => d.x0)
+            .endAngle(d => d.x1)
+            .innerRadius(d => d.y0)
+            .outerRadius(d => d.y1);
+
+        // Color scale
+        const color = d3.scaleOrdinal()
+            .domain(root.descendants().map(d => d.data.name))
+            .range(root.descendants().map(d => d.data.color || "#999"));
+
+        // Draw the sunburst
+        const path = svg.selectAll("path")
+            .data(root.descendants().filter(d => d.depth))
+            .enter()
+            .append("path")
+            .attr("d", arc)
+            .style("fill", d => color(d.data.name))
+            .style("opacity", 0.8)
+            .style("stroke", "#fff")
+            .style("stroke-width", "1px")
+            .style("cursor", "pointer")
+            .on("mouseover", function(event, d) {
+                // Highlight the skill path
+                highlightPath(d);
                 
-            nodeGradient.append("stop")
-                .attr("offset", "0%")
-                .attr("stop-color", colorScale(d.depth));
-                
-            nodeGradient.append("stop")
-                .attr("offset", "100%")
-                .attr("stop-color", d3.color(colorScale(d.depth)).brighter(0.5));
-        });
-
-        nodeEnter.append('circle')
-            .attr('r', 1e-6)
-            .style("fill", d => `url(#node-gradient-${d.id})`)
-            .style("stroke", d => d3.color(colorScale(d.depth)).darker(0.5))
-            .style("stroke-width", "2px")
-            .style("filter", "url(#glow)");
-
-        // Add labels with better styling
-        nodeEnter.append('text')
-            .attr("dy", ".35em")
-            .attr("x", d => d.children || d._children ? -15 : 15)
-            .attr("text-anchor", d => d.children || d._children ? "end" : "start")
-            .style("fill", "#2c3e50")
-            .style("font-weight", d => d.depth === 0 ? "bold" : "normal")
-            .style("font-size", d => Math.max(10, 14 - d.depth * 1.5) + "px")
-            .style("font-family", "Arial, sans-serif")
-            .text(d => d.data.name);
-
-        // UPDATE nodes
-        const nodeUpdate = nodeEnter.merge(node);
-
-        nodeUpdate.transition()
-            .duration(duration)
-            .attr("transform", d => `translate(${d.y},${d.x})`);
-
-        nodeUpdate.select('circle')
-            .attr('r', d => Math.max(6, 12 - d.depth * 1.5))
-            .style("fill", d => `url(#node-gradient-${d.id})`)
-            .style("stroke", d => d3.color(colorScale(d.depth)).darker(0.5))
-            .style("stroke-width", "2px");
-
-        // Remove exiting nodes
-        const nodeExit = node.exit().transition()
-            .duration(duration)
-            .attr("transform", d => `translate(${source.y},${source.x})`)
-            .remove();
-
-        nodeExit.select('circle')
-            .attr('r', 1e-6);
-
-        nodeExit.select('text')
-            .style('fill-opacity', 1e-6);
-
-        // ****************** Links section ***************************
-        const link = svg.selectAll('path.link')
-            .data(treeData.links(), d => d.target.id);
-
-        // Enter new links
-        const linkEnter = link.enter().insert('path', "g")
-            .attr("class", "link")
-            .attr('d', d => {
-                const o = { x: source.x0, y: source.y0 };
-                return diagonal(o, o);
-            })
-            .style("fill", "none")
-            .style("stroke", d => colorScale(d.source.depth))
-            .style("stroke-width", "2px")
-            .style("stroke-dasharray", "5,5");
-
-        // UPDATE links
-        const linkUpdate = linkEnter.merge(link);
-
-        linkUpdate.transition()
-            .duration(duration)
-            .attr('d', d => diagonal(d.source, d.target))
-            .style("stroke", d => colorScale(d.source.depth));
-
-        // Remove exiting links
-        link.exit().transition()
-            .duration(duration)
-            .attr('d', d => {
-                const o = { x: source.x, y: source.y };
-                return diagonal(o, o);
-            })
-            .remove();
-
-        // Store old positions
-        treeData.descendants().forEach(d => {
-            d.x0 = d.x;
-            d.y0 = d.y;
-        });
-
-        // Diagonal generator with smooth curves
-        function diagonal(s, d) {
-            const curvature = 0.5;
-            const sourceX = s.y;
-            const sourceY = s.x;
-            const targetX = d.y;
-            const targetY = d.x;
-            
-            const midX = (sourceX + targetX) * curvature;
-            
-            return `M ${sourceX} ${sourceY}
-                    C ${midX} ${sourceY},
-                      ${midX} ${targetY},
-                      ${targetX} ${targetY}`;
-        }
-
-        // Interaction functions
-        function click(event, d) {
-            if (d.children) {
-                d._children = d.children;
-                d.children = null;
-            } else {
-                d.children = d._children;
-                d._children = null;
-            }
-            update(d);
-        }
-
-        function mouseover(event, d) {
-            // Highlight connected nodes
-            let current = d;
-            while (current) {
-                d3.selectAll(`.node[id="${current.id}"]`)
-                    .select('circle')
-                    .transition()
+                // Show tooltip
+                tooltip.transition()
                     .duration(200)
-                    .attr('r', d => Math.max(8, 14 - d.depth * 1.5));
-                    
-                if (current.parent) {
-                    d3.selectAll(`.link[data-target="${current.id}"]`)
-                        .style("stroke-width", '3px');
-                }
+                    .style("opacity", .9);
+                tooltip.html(`
+                    <strong>${d.data.name}</strong><br/>
+                    ${d.data.description || "Skill category"}
+                `)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+                
+                // Update info panel
+                updateInfoPanel(d);
+                updateBreadcrumb(d);
+            })
+            .on("mouseout", function() {
+                // Reset highlight
+                resetHighlight();
+                
+                // Hide tooltip
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+
+        // Add text labels with larger font for better readability
+        const text = svg.selectAll("text")
+            .data(root.descendants().filter(d => d.depth && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03))
+            .enter()
+            .append("text")
+            .attr("transform", function(d) {
+                const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
+                const y = (d.y0 + d.y1) / 2;
+                return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
+            })
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "middle")
+            .attr("pointer-events", "none")
+            .text(d => d.data.name)
+            .style("font-size", "12px") // Increased font size
+            .style("font-weight", "bold")
+            .style("fill", "white")
+            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.5)");
+
+        // Highlight path function
+        function highlightPath(d) {
+            // Reset all first
+            resetHighlight();
+            
+            // Get path to root
+            const sequence = getAncestors(d);
+            
+            // Highlight the path
+            sequence.forEach(node => {
+                d3.selectAll(`path`).filter(path => 
+                    path.data.name === node.data.name
+                ).style("opacity", 1)
+                .style("stroke-width", "2px");
+            });
+        }
+
+        // Reset highlight
+        function resetHighlight() {
+            svg.selectAll("path")
+                .style("opacity", 0.8)
+                .style("stroke-width", "1px");
+        }
+
+        // Get ancestors of a node
+        function getAncestors(node) {
+            const path = [];
+            let current = node;
+            while (current.parent) {
+                path.unshift(current);
                 current = current.parent;
             }
+            return path;
+        }
+
+        // Update info panel with skill details
+        function updateInfoPanel(d) {
+            const skillDetails = d3.select("#skill-details");
+            const currentPath = d3.select("#current-path");
             
-            // Highlight direct children
+            // Clear previous content
+            skillDetails.html("");
+            currentPath.html("");
+            
+            // Add path information
+            const sequence = getAncestors(d);
+            const skillPath = sequence.map(node => node.data.name).join(" → ");
+            
+            currentPath.append("p")
+                .text(`Skill Path: ${skillPath}`)
+                .style("margin-bottom", "15px")
+                .style("font-weight", "bold")
+                .style("color", "#ffcc00");
+            
+            // Add skill description based on the selected node
+            let description = d.data.description || "Specialized skill within my creative toolkit.";
+            let level = Math.min(5, Math.max(1, Math.floor(d.depth * 1.5)));
+            
+            // Adjust level based on skill category
+            if (d.data.name === "Web Design" || d.depth === 1 && d.parent.data.name === "Web Design") {
+                level = 4;
+            } else if (d.data.name === "Graphic Design" || d.depth === 1 && d.parent.data.name === "Graphic Design") {
+                level = 5;
+            } else if (d.data.name === "3D & Animation" || d.depth === 1 && d.parent.data.name === "3D & Animation") {
+                level = 3;
+            } else if (d.data.name === "UX/UI" || d.depth === 1 && d.parent.data.name === "UX/UI") {
+                level = 4;
+            }
+            
+            skillDetails.append("div")
+                .attr("class", "skill-item")
+                .html(`
+                    <div class="skill-header">
+                        <span class="skill-name">${d.data.name}</span>
+                        <div class="skill-level">
+                            ${Array.from({length: 5}, (_, i) => 
+                                `<div class="level-dot ${i < level ? 'active' : ''}"></div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <p class="skill-description">${description}</p>
+                `);
+            
+            // Add children if any
             if (d.children) {
                 d.children.forEach(child => {
-                    d3.selectAll(`.node[id="${child.id}"]`);
-                        
-                    d3.selectAll(`.link[data-target="${child.id}"]`)
-                        .style("stroke-width", '3px');
+                    skillDetails.append("div")
+                        .attr("class", "skill-item")
+                        .html(`
+                            <div class="skill-header">
+                                <span class="skill-name">${child.data.name}</span>
+                                <div class="skill-level">
+                                    ${Array.from({length: 5}, (_, i) => 
+                                        `<div class="level-dot ${i < Math.min(5, level-1) ? 'active' : ''}"></div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <p class="skill-description">${child.data.description || "Specialized sub-skill"}</p>
+                        `);
                 });
             }
         }
 
-        function mouseout(event, d) {
-            // Reset all sizes
-            svg.selectAll('.link')
-                .style("stroke-width", '2px');
+        // Update breadcrumb
+        function updateBreadcrumb(d) {
+            const breadcrumb = d3.select("#breadcrumb");
+            breadcrumb.html("");
+            
+            const sequence = getAncestors(d);
+            
+            // Add root
+            breadcrumb.append("span")
+                .text("All Skills");
+            
+            // Add path items
+            sequence.forEach((node, i) => {
+                breadcrumb.append("span")
+                    .html(" &gt; ");
                 
-            svg.selectAll('.node')
-                .select('circle')
-                .transition()
-                .duration(200)
-                .attr('r', d => Math.max(6, 12 - d.depth * 1.5));
+                breadcrumb.append("span")
+                    .text(node.data.name);
+            });
         }
 
-        // Add data attributes for targeting
-        link.attr('data-target', d => d.target.id);
-        node.attr('id', d => d.id);
+        // Create legend
+        function createLegend() {
+            const legend = d3.select("#legend");
+            legend.html(""); // Clear existing legend
+            
+            const categories = ["Web Design", "UX/UI", "Graphic Design", "3D & Animation"];
+            const colors = ["#1abc9c", "#f39c12", "#2ecc71", "#9b59b6"];
+            
+            categories.forEach((category, i) => {
+                legend.append("div")
+                    .attr("class", "legend-item")
+                    .html(`
+                        <div class="legend-color" style="background-color: ${colors[i]}"></div>
+                        <span>${category}</span>
+                    `);
+            });
+        }
+
+        // Initialize
+        createLegend();
     }
 
-    // Add background
-    svg.append("rect")
-        .attr("width", width)
-        .attr("height", height)
-        .style("fill", "transparent");
+    // Initialize the visualization
+    initializeVisualization();
 
-    // Add title - centered
-    svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", -20)
-        .attr("text-anchor", "middle")
-        .style("font-size", "24px")
-        .style("font-weight", "bold")
-        .style("fill", "#2c3e50")
-        .text("Creative Skills Flow Map");
-
-    // Initial render
-    update(root);
-})();
+    // Reinitialize on window resize
+    window.addEventListener('resize', function() {
+        setTimeout(initializeVisualization, 100);
+    });
+});
