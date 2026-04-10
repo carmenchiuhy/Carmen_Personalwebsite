@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Year Illustration Project • Earth Online</title>
+  <style>
+    :root {
+      --accent: #9f7aea;
+      --dark: #1a1a2e;
+      --light: #f8f1e9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 100px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .process-step {
+      background: #f8f1e9;
+      padding: 2rem;
+      border-radius: 16px;
+      margin-bottom: 3rem;
+    }
+
+    .moodboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 15px;
+    }
+
+    .moodboard img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .final-art {
+      text-align: center;
+    }
+
+    .final-art img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      margin: 2rem 0;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #ddd;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 12px 30px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      .nav-links { gap: 1rem; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Illustration Project</a>
+      <ul class="nav-links">
+        <li><a href="#brainstorm">Brainstorm</a></li>
+        <li><a href="#moodboard">Mood Board</a></li>
+        <li><a href="#process">Drafts</a></li>
+        <li><a href="#Artist Statement">Artist Statement</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <h1>Earth Online</h1>
+    <p>Final Year Illustration Project • Chiu Hoi Ying • 2026</p>
+    <p style="margin-top: 20px; font-size: 1.1rem;">A visual journey from idea to finished illustrations</p>
+  </header>
+
+  <!-- Brainstorm Section -->
+  <section id="brainstorm">
+    <h2>1. Brainstorm & Concept Development</h2>
+    <div class="process-step">
+      <h3 style="margin-bottom: 1rem;">Project Brief</h3>
+      <p>A digital illustration series, exploring NPC autonomy in a collapsing MMORPG world during final server shutdown hours.</p>
+      
+      <h3 style="margin: 2rem 0 1rem;">Key Ideas Explored</h3>
+      <ul style="padding-left: 20px; font-size: 1.1rem;">
+        
+        <li>Earth Online documents an MMORPG server shutdown where NPCs break free in the final 24 hours to explore and complete unfinished player quests, blending Victorian glitch aesthetics with digital impermanence philosophy. </li>
+        
+        <li>Medium: Procreate digital painting</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Mood Board -->
+  <section id="moodboard" style="background: #f8f1e9;">
+    <h2>2. Mood Board</h2>
+    <div class="moodboard">
+      <!-- Replace the src with your own mood board images -->
+
+        <img src="images/canvas_pic-260410_1357.png" alt="Mood 9">
+        <img src="images/canvas_fyp-260410_1358.png" alt="Mood 9">
+
+
+      
+    </div>
+    <p style="text-align:center; margin-top: 2rem; font-style:italic;">Color palette, textures, and visual references that shaped the atmosphere of the project.</p>
+  </section>
+
+  
+   
+  <!-- Process & Drafts -->
+  <section id="process" style="background: #f8f1e9;">
+    <h2>3. Drafts</h2>
+        <div class="moodboard">
+      <!-- Replace the src with your own mood board images -->
+
+        <img src="images/IMG_4982.png" alt="Mood 1">
+        <img src="images/IMG_5022.png" alt="Mood 2">
+        <img src="images/IMG_5023.PNG" alt="Mood 3">
+        <img src="images/IMG_5024.PNG" alt="Mood 4">
+        <img src="images/IMG_5025.PNG" alt="Mood 5">
+        <img src="images/IMG_5026.PNG" alt="Mood 6">     
+        <img src="images/IMG_5027.PNG" alt="Mood 7">
+        <img src="images/IMG_5029.PNG" alt="Mood 8">
+
+      
+    </div>
+  </section>
+
+ <section id="Artist Statement">
+    <h2>Artist Statement </h2>
+    <div class="grid">
+      <div class="card">
+       
+          <p>
+            
+
+Earth Online imagines an MMORPG teetering on server shutdown, where NPCs—long bound to repetitive scripted loops as shopkeepers, quest-givers, and background wanderers—suddenly awaken in the final 24 hours to explore, complete unfinished quests, and savor a digital world they were never designed to truly inhabit. Victorian architecture defines their settings—cobblestone alleys, gothic spires, and arched libraries—infused with steampunk elements like exposed gears, brass gauges, and flickering lanterns that evoke a bygone mechanical nostalgia.
+
+
+At its heart, this series delivers a comforting reminder: enjoy life, live in the moment. Soft, warm lighting bathes each scene in hues of honeyed gold, muted lavender pastels, and gentle rose glows, creating an overall style that feels like a heartfelt embrace rather than digital doom. Even as server errors creep in—faint scan lines, dissolving textures—the palette prioritizes solace over chaos, turning apocalypse into intimate reflection.
+
+Through a series of digital illustrations, crafted with Procreate's thick coating style for tactile depth, I layer these stories: task UIs softening from harsh overlays to nostalgic backgrounds, characters rotating as protagonists in a gentle road-trip arc toward open-ended liberation. Earth Online invites viewers to witness this glitch-born grace—a call to step beyond scripts, into the warmth of now.
+            </p>
+          </div>
+     
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>Chiu Hoi Ying</strong> — Final Year Project</p>
+    <p style="margin-top: 10px;">Hong Kong</p>
+    <a href="mailto:eechiuhy@gmail.com" class="btn">Contact Me</a>
+    <p style="margin-top: 40px; font-size: 0.9rem;">Thank you for viewing my process</p>
+  </footer>
+
+</body>
+</html>
